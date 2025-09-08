@@ -1,5 +1,9 @@
 package com.benevenuto.bffagendadortarefas.business;
 
+import com.benevenuto.bffagendadortarefas.business.dto.in.EnderecoDTORequest;
+import com.benevenuto.bffagendadortarefas.business.dto.in.LoginDTORequest;
+import com.benevenuto.bffagendadortarefas.business.dto.in.TelefoneDTORequest;
+import com.benevenuto.bffagendadortarefas.business.dto.in.UsuarioDTORequest;
 import com.benevenuto.bffagendadortarefas.business.dto.out.EnderecoDTOResponse;
 import com.benevenuto.bffagendadortarefas.business.dto.out.TelefoneDTOResponse;
 import com.benevenuto.bffagendadortarefas.business.dto.out.UsuarioDTOResponse;
@@ -13,11 +17,11 @@ public class UsuarioService {
 
     private final UsuarioClient client;
 
-    public String loginUsuario(UsuarioDTOResponse usuarioDTO) {
-        return client.login(usuarioDTO);
+    public String loginUsuario(LoginDTORequest loginDTORequest) {
+        return client.login(loginDTORequest);
     }
 
-    public UsuarioDTOResponse salvaUsuario(UsuarioDTOResponse usuarioDTO) {
+    public UsuarioDTOResponse salvaUsuario(UsuarioDTORequest usuarioDTO) {
         return client.salvaUsuario(usuarioDTO);
     }
 
@@ -29,24 +33,24 @@ public class UsuarioService {
         client.deletaUsuarioPorEmail(email, token);
     }
 
-    public UsuarioDTOResponse atualizaDadosUsuario(String token, UsuarioDTOResponse dto) {
+    public UsuarioDTOResponse atualizaDadosUsuario(String token, UsuarioDTORequest dto) {
         return client.atualizaDadosUsuario(dto,token);
     }
 
-    public EnderecoDTOResponse atualizaEndereco(Long idEndereco, EnderecoDTOResponse enderecoDTO, String token) {
+    public EnderecoDTOResponse atualizaEndereco(Long idEndereco, EnderecoDTORequest enderecoDTO, String token) {
         return client.atualizaEndereco(enderecoDTO, idEndereco, token);
 
     }
 
-    public TelefoneDTOResponse atualizaTelefone(Long idTelefone, TelefoneDTOResponse telefoneDTO, String token) {
+    public TelefoneDTOResponse atualizaTelefone(Long idTelefone, TelefoneDTORequest telefoneDTO, String token) {
         return client.atualizaTelefone(telefoneDTO, idTelefone, token);
     }
 
-    public EnderecoDTOResponse cadastraEndereco(String token, EnderecoDTOResponse dto) {
+    public EnderecoDTOResponse cadastraEndereco(String token, EnderecoDTORequest dto) {
         return client.cadastraEndereco(dto, token);
     }
 
-    public TelefoneDTOResponse cadastraTelefone(String token, TelefoneDTOResponse dto) {
+    public TelefoneDTOResponse cadastraTelefone(String token, TelefoneDTORequest dto) {
         return client.cadastraTelefone(dto, token);
     }
 }

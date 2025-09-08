@@ -31,7 +31,7 @@ public class TarefasController {
     @ApiResponse(responseCode = "200", description = "Tarefa gravada com sucesso")
     @ApiResponse(responseCode = "400", description = "Requisição inválida")
     @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
-    public ResponseEntity<TarefasDTORequest> gravarTarefas(@RequestBody TarefasDTORequest dto,
+    public ResponseEntity<TarefasDTOResponse> gravarTarefas(@RequestBody TarefasDTORequest dto,
                                                            @RequestHeader(name = "Authorization", required = false) String token) {
         return ResponseEntity.ok(tarefasService.gravarTarefa(token, dto));
     }
@@ -41,7 +41,7 @@ public class TarefasController {
     @ApiResponse(responseCode = "200", description = "Eventos buscados com sucesso")
     @ApiResponse(responseCode = "404", description = "Eventos não encontrados")
     @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
-    public ResponseEntity<List<TarefasDTORequest>> buscaListaDeTarefasPorPerido(
+    public ResponseEntity<List<TarefasDTOResponse>> buscaListaDeTarefasPorPerido(
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataInicial,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFinal,
             @RequestHeader(name = "Authorization", required = false) String token
@@ -54,7 +54,7 @@ public class TarefasController {
     @ApiResponse(responseCode = "200", description = "Tarefas buscadas com sucesso")
     @ApiResponse(responseCode = "404", description = "Tarefas não encontradas")
     @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
-    public ResponseEntity<List<TarefasDTORequest>> buscaTarefasPorEmail(@RequestHeader(name = "Authorization", required = false) String token) {
+    public ResponseEntity<List<TarefasDTOResponse>> buscaTarefasPorEmail(@RequestHeader(name = "Authorization", required = false) String token) {
 
         List<TarefasDTOResponse> tarefas = tarefasService.buscaTarefasPorEmail(token);
         return ResponseEntity.ok(tarefas);

@@ -15,6 +15,6 @@ public class UsuarioDTORequest {
     private String nome;
     private String email;
     private String senha;
-    private List<EnderecoDTOResquest> enderecos;
+    private List<EnderecoDTORequest> enderecos;
     private List<TelefoneDTOResponse> telefones;
 }

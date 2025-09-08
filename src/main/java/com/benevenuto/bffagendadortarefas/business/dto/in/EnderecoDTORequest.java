@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class EnderecoDTOResquest {
+public class EnderecoDTORequest {
 
     private String rua;
     private Long numero;
