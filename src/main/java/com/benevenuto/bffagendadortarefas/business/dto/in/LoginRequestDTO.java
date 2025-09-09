@@ -1,14 +1,15 @@
 package com.benevenuto.bffagendadortarefas.business.dto.in;
 
+
 import lombok.*;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class TelefoneDTORequest {
+public class LoginRequestDTO {
 
-    private String numero;
-    private String ddd;
+    private String email;
+    private String senha;
 }

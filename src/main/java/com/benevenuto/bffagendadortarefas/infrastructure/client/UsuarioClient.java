@@ -1,12 +1,12 @@
 package com.benevenuto.bffagendadortarefas.infrastructure.client;
 
-import com.benevenuto.bffagendadortarefas.business.dto.in.EnderecoDTORequest;
-import com.benevenuto.bffagendadortarefas.business.dto.in.LoginDTORequest;
-import com.benevenuto.bffagendadortarefas.business.dto.in.TelefoneDTORequest;
-import com.benevenuto.bffagendadortarefas.business.dto.in.UsuarioDTORequest;
-import com.benevenuto.bffagendadortarefas.business.dto.out.EnderecoDTOResponse;
-import com.benevenuto.bffagendadortarefas.business.dto.out.TelefoneDTOResponse;
-import com.benevenuto.bffagendadortarefas.business.dto.out.UsuarioDTOResponse;
+import com.benevenuto.bffagendadortarefas.business.dto.in.EnderecoRequestDTO;
+import com.benevenuto.bffagendadortarefas.business.dto.in.LoginRequestDTO;
+import com.benevenuto.bffagendadortarefas.business.dto.in.TelefoneRequestDTO;
+import com.benevenuto.bffagendadortarefas.business.dto.in.UsuarioRequestDTO;
+import com.benevenuto.bffagendadortarefas.business.dto.out.EnderecoResponseDTO;
+import com.benevenuto.bffagendadortarefas.business.dto.out.TelefoneResponseDTO;
+import com.benevenuto.bffagendadortarefas.business.dto.out.UsuarioResponseDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.*;
 public interface UsuarioClient {
 
     @GetMapping
-    UsuarioDTOResponse buscaUsuarioPorEmail(@RequestParam("email") String email,
+    UsuarioResponseDTO buscaUsuarioPorEmail(@RequestParam("email") String email,
                                             @RequestHeader("Authorization") String token);
 
     @PostMapping("/login")
-    String login(@RequestBody LoginDTORequest loginDTORequest);
+    String login(@RequestBody LoginRequestDTO loginDTORequest);
 
     @PostMapping
-    UsuarioDTOResponse salvaUsuario(@RequestBody UsuarioDTORequest usuarioDTO);
+    UsuarioResponseDTO salvaUsuario(@RequestBody UsuarioRequestDTO usuarioDTO);
 
 
     @DeleteMapping("/{email}")
@@ -29,24 +29,24 @@ public interface UsuarioClient {
                                @RequestHeader("Authorization") String token);
 
     @PutMapping
-    UsuarioDTOResponse atualizaDadosUsuario(@RequestBody UsuarioDTORequest dto,
+    UsuarioResponseDTO atualizaDadosUsuario(@RequestBody UsuarioRequestDTO dto,
                                             @RequestHeader("Authorization") String token);
 
     @PutMapping("/endereco")
-    EnderecoDTOResponse atualizaEndereco(@RequestBody EnderecoDTORequest dto,
+    EnderecoResponseDTO atualizaEndereco(@RequestBody EnderecoRequestDTO dto,
                                          @RequestParam("id") Long id,
                                          @RequestHeader("Authorization") String token);
 
     @PutMapping("/telefone")
-    TelefoneDTOResponse atualizaTelefone(@RequestBody TelefoneDTORequest dto,
+    TelefoneResponseDTO atualizaTelefone(@RequestBody TelefoneRequestDTO dto,
                                          @RequestParam("id") Long id,
                                          @RequestHeader("Authorization") String token);
 
     @PostMapping("/endereco")
-    EnderecoDTOResponse cadastraEndereco(@RequestBody EnderecoDTORequest dto,
+    EnderecoResponseDTO cadastraEndereco(@RequestBody EnderecoRequestDTO dto,
                                          @RequestHeader("Authorization") String token);
 
     @PostMapping("/telefone")
-    TelefoneDTOResponse cadastraTelefone(@RequestBody TelefoneDTORequest dto,
+    TelefoneResponseDTO cadastraTelefone(@RequestBody TelefoneRequestDTO dto,
                                          @RequestHeader("Authorization") String token);
 }

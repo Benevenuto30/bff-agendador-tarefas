@@ -1,8 +1,8 @@
 package com.benevenuto.bffagendadortarefas.business;
 
 
-import com.benevenuto.bffagendadortarefas.business.dto.in.TarefasDTORequest;
-import com.benevenuto.bffagendadortarefas.business.dto.out.TarefasDTOResponse;
+import com.benevenuto.bffagendadortarefas.business.dto.in.TarefasRequestDTO;
+import com.benevenuto.bffagendadortarefas.business.dto.out.TarefasResponseDTO;
 import com.benevenuto.bffagendadortarefas.business.enums.StatusNotificacaoEnum;
 import com.benevenuto.bffagendadortarefas.infrastructure.client.TarefasClient;
 import lombok.RequiredArgsConstructor;
@@ -17,15 +17,15 @@ public class TarefasService {
 
     private final TarefasClient client;
 
-    public TarefasDTOResponse gravarTarefa(String token, TarefasDTORequest dto) {
+    public TarefasResponseDTO gravarTarefa(String token, TarefasRequestDTO dto) {
       return client.gravarTarefas(dto, token);
     }
 
-    public List<TarefasDTOResponse> buscaTarefasAgendadasPorPeriodo(LocalDateTime dataInicial, LocalDateTime dataFinal, String token) {
+    public List<TarefasResponseDTO> buscaTarefasAgendadasPorPeriodo(LocalDateTime dataInicial, LocalDateTime dataFinal, String token) {
         return client.buscaListaDeTarefasPorPerido(dataInicial, dataFinal, token);
     }
 
-    public List<TarefasDTOResponse> buscaTarefasPorEmail(String token) {
+    public List<TarefasResponseDTO> buscaTarefasPorEmail(String token) {
        return client.buscaTarefasPorEmail(token);
     }
 
@@ -33,11 +33,11 @@ public class TarefasService {
        client.deletaTarefaPorId(id, token);
     }
 
-    public TarefasDTOResponse alteraStatus(StatusNotificacaoEnum status, String id, String token){
+    public TarefasResponseDTO alteraStatus(StatusNotificacaoEnum status, String id, String token){
        return client.alteraStatusNotificacao(status, id, token);
     }
 
-    public TarefasDTOResponse updateTarefas(TarefasDTORequest dto, String id, String token){
+    public TarefasResponseDTO updateTarefas(TarefasRequestDTO dto, String id, String token){
         return client.updateTarefas(dto, id, token);
     }
 }

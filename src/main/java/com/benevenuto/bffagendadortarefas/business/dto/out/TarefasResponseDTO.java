@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class TarefasDTOResponse {
+public class TarefasResponseDTO {
 
     private String id;
     private String nomeTarefa;

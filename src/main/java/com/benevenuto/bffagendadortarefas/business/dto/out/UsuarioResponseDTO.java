@@ -9,11 +9,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UsuarioDTOResponse {
+public class UsuarioResponseDTO {
 
     private String nome;
     private String email;
     private String senha;
-    private List<EnderecoDTOResponse> enderecos;
-    private List<TelefoneDTOResponse> telefones;
+    private List<EnderecoResponseDTO> enderecos;
+    private List<TelefoneResponseDTO> telefones;
 }

@@ -1,6 +1,5 @@
 package com.benevenuto.bffagendadortarefas.business.dto.in;
 
-import com.benevenuto.bffagendadortarefas.business.enums.StatusNotificacaoEnum;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
@@ -11,7 +10,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class TarefasDTORequest {
+public class TarefasRequestDTO {
 
     private String nomeTarefa;
     private String descricao;
