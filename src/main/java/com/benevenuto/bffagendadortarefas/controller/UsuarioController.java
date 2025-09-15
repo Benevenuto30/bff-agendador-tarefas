@@ -1,6 +1,7 @@
 package com.benevenuto.bffagendadortarefas.controller;
 
 import com.benevenuto.bffagendadortarefas.business.UsuarioService;
+import com.benevenuto.bffagendadortarefas.business.ViaCepService;
 import com.benevenuto.bffagendadortarefas.business.dto.in.EnderecoRequestDTO;
 import com.benevenuto.bffagendadortarefas.business.dto.in.LoginRequestDTO;
 import com.benevenuto.bffagendadortarefas.business.dto.in.TelefoneRequestDTO;
@@ -8,6 +9,7 @@ import com.benevenuto.bffagendadortarefas.business.dto.in.UsuarioRequestDTO;
 import com.benevenuto.bffagendadortarefas.business.dto.out.EnderecoResponseDTO;
 import com.benevenuto.bffagendadortarefas.business.dto.out.TelefoneResponseDTO;
 import com.benevenuto.bffagendadortarefas.business.dto.out.UsuarioResponseDTO;
+import com.benevenuto.bffagendadortarefas.business.dto.out.ViaCepResponseDTO;
 import com.benevenuto.bffagendadortarefas.infrastructure.security.SecurityConfig;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -25,6 +27,7 @@ import org.springframework.web.bind.annotation.*;
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
+    private final ViaCepService viaCepService;
 
     @PostMapping
     @Operation(summary = "Salvar usuário", description = "Cadastra um novo usuário no sistema")
@@ -115,5 +118,14 @@ public class UsuarioController {
     public ResponseEntity<TelefoneResponseDTO> cadastraTelefone(@RequestBody TelefoneRequestDTO dto,
                                                                 @RequestHeader(name = "Authorization", required = false) String token){
         return ResponseEntity.ok(usuarioService.cadastraTelefone(token,dto));
+    }
+
+    @GetMapping("/endereco/{cep}")
+    @Operation(summary = "Buscar dados de CEP", description = "Busca os dados de endereço a partir do CEP informado")
+    @ApiResponse(responseCode = "200", description = "Dados do CEP encontrados com sucesso")
+    @ApiResponse(responseCode = "404", description = "CEP não encontrado")
+    @ApiResponse(responseCode = "500", description = "Erro interno do servidor")
+    public ResponseEntity<ViaCepResponseDTO> buscarDadosCep(@PathVariable String cep){
+        return ResponseEntity.ok(viaCepService.buscarCep(cep));
     }
 }
